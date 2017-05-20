@@ -1,14 +1,10 @@
-const http = require('http');
+var app = require('express')();
+var http = require('http').Server(app);
 
-const hostname = '127.0.0.1';
-const port = '1337';
+    app.get('/', function(req, res){
+      res.sendfile('index.html');
+    });
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type','text/plain');
-    res.end('Hello World');
-});
-
-server.listen(port, hostname, () => {
-    console.log(`Server runing at http://${hostname}:${port}/`);
+http.listen(1337, function(){
+  console.log('listening on *:1337');
 });
